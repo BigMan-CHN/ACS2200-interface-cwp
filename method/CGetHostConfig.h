@@ -7,6 +7,9 @@
 #include <iostream>
 #include <string.h>
 
+#include <mntent.h>
+#include <errno.h>
+
 /********************************************************
  * boost usart headers
  *******************************************************/
@@ -76,6 +79,8 @@ public:
      */
     InterfaceResCode GetHostConfig(string &sResult);
 
+	InterfaceResCode GetHardDevsState(string &sResult);
+
 private:
     //转换CData为需求的CJSON格式
     bool ConvertCDATA2CJSON(CData &oResult);
@@ -91,6 +96,8 @@ private:
     bool AddDiskInfoNode(void);
     //添加channel节点信息
     bool AddChannelsNode(JSONChannelNode & channelData);
+
+	bool GetDiskStateInner(CData &oResult, char *cResult);
 
 private:
     /**
